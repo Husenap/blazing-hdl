@@ -1,0 +1,15 @@
+ModStmt: HalfAdder
+  Ports: 
+    PortStmt: input wire a
+    PortStmt: input wire b
+    PortStmt: output wire sum
+    PortStmt: output wire carry
+  Body: 
+    AssignmentExpr: sum
+      BinOpExpr: ^
+        IdUseExpr: a
+        IdUseExpr: b
+    AssignmentExpr: carry
+      BinOpExpr: &
+        IdUseExpr: a
+        IdUseExpr: b

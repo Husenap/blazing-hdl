@@ -3,14 +3,15 @@ file(
   TEST_FILES
   "testfiles/ast/*.in"
   "testfiles/ast/*.expected"
-  "testfiles/interpreter/*.in"
-  "testfiles/interpreter/*.expected"
+  "testfiles/codegen/verilog/*.in"
+  "testfiles/codegen/verilog/*.expected"
   "testfiles/parser/*.valid"
   "testfiles/parser/*.error")
 
 add_custom_target(blazing_test_testfiles ALL DEPENDS ${TEST_FILES})
 
-add_executable(blazing_test "test_parser.cpp" "test_ast.cpp")
+add_executable(blazing_test "test_parser.cpp" "test_ast.cpp"
+                            "test_codegen_verilog.cpp")
 
 add_dependencies(blazing_test blazing_test_testfiles)
 
