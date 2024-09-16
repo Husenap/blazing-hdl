@@ -44,7 +44,7 @@ mod MyDuplicationUnit(io : UnaryOpIO) {
 #### Templates
 ```
 interface Uint<W> {
-  data : bool[W:0]
+  data : vec<W>
 }
 
 interface MyFloat {
