@@ -33,8 +33,7 @@ interface UnaryOpIO {
 mod MyDuplicationUnit(io : UnaryOpIO) {
   wire MyFloat result;
   reg MyFloat pipe;
-  result.significand = io.in.significand;
-  result.sign = io.in.sign;
+  result = io.in;
   result.exponent = io.in.exponent + 1;
   pipe = result;
   io.out = pipe;
