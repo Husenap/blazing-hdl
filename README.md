@@ -52,3 +52,16 @@ interface MyFloat {
   mant : Uint<23>
 }
 ```
+
+#### Functions on types
+```
+impl +(other : uint<M>) on uint<W> {
+  return FullAdder(this, other);
+}
+
+impl _slice(from : number, to : number) on uint<W> {
+  wire new : uint<W>;
+  new.data = this.data[from, to];
+  return new;
+}
+```
