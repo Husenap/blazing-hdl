@@ -40,3 +40,16 @@ mod MyDuplicationUnit(io : UnaryOpIO) {
   io.out = pipe;
 }
 ```
+
+#### Templates
+```
+interface Uint<W> {
+  data : bool[W:0]
+}
+
+interface MyFloat {
+  sign : bool
+  exp : Uint<8>
+  mant : Uint<23>
+}
+```
