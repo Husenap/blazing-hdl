@@ -1,0 +1,22 @@
+InterfaceStmt: MyFloat
+  Ports: 
+    PortStmt: undirected bool sign
+    PortStmt: undirected uint exp
+    PortStmt: undirected uint mant
+ModStmt: ModuleWithFloat
+  Ports: 
+    PortStmt: output MyFloat x
+    PortStmt: input MyFloat y
+  Body: 
+InterfaceStmt: RvChannel
+  Ports: 
+    PortStmt: input uint data
+    PortStmt: input bool valid
+    PortStmt: output bool ready
+InterfaceStmt: Something
+  Ports: 
+    PortStmt: input RvChannel AR
+    PortStmt: input RvChannel AW
+    PortStmt: output RvChannel R
+    PortStmt: input RvChannel W
+    PortStmt: output RvChannel B

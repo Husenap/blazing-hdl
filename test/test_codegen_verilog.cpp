@@ -4,16 +4,16 @@
 
 #include "Parser.hpp"
 #include "Scanner.hpp"
-#include "blazing/frontend/ast/AstDumpTree.hpp"
+#include "blazing/frontend/codegen/verilog/Transpiler.hpp"
 #include "gtest/gtest.h"
 #include "util.hpp"
 
-class TestAst : public ::testing::TestWithParam<std::filesystem::path> {};
+class TestCodegenVerilog : public ::testing::TestWithParam<std::filesystem::path> {};
 
-TEST_P(TestAst, TestFileProcessing) {
+TEST_P(TestCodegenVerilog, TestFileProcessing) {
   auto in_filepath  = GetParam();
   auto out_filepath = in_filepath;
-  out_filepath.replace_extension("out");
+  out_filepath.replace_extension("v");
   auto expected_filepath = in_filepath;
   expected_filepath.replace_extension("expected");
 
@@ -27,10 +27,12 @@ TEST_P(TestAst, TestFileProcessing) {
 
   ASSERT_EQ(parser.parse(), 0);
 
-  blazing::AstDumpTree dumpTree(out_file);
-  sm.visit(dumpTree);
+  blazing::codegen::verilog::Transpiler transpiler(out_file);
+  sm.visit(transpiler);
 
   ASSERT_EQ(ReadFile(out_filepath), ReadFile(expected_filepath));
 }
 
-INSTANTIATE_TEST_SUITE_P(AstFiles, TestAst, ::testing::ValuesIn(GetTestFiles("testfiles/ast", ".in")));
+INSTANTIATE_TEST_SUITE_P(VerilogFiles,
+                         TestCodegenVerilog,
+                         ::testing::ValuesIn(GetTestFiles("testfiles/codegen/verilog", ".in")));

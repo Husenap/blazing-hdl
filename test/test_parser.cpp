@@ -38,3 +38,6 @@ TEST_P(TestSyntaxError, TestFileProcessing) {
 }
 
 INSTANTIATE_TEST_SUITE_P(ErrorFiles, TestSyntaxError, ::testing::ValuesIn(GetTestFiles("testfiles/parser", ".error")));
+
+GTEST_ALLOW_UNINSTANTIATED_PARAMETERIZED_TEST(TestSyntaxError);
+GTEST_ALLOW_UNINSTANTIATED_PARAMETERIZED_TEST(TestValidSyntax);

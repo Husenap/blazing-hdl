@@ -1,0 +1,10 @@
+mod HalfAdder (
+  a <- wire
+  b <- wire
+  sum -> wire
+  carry -> wire
+) {
+  sum = a ^ b;
+  carry = a & b;
+}
+

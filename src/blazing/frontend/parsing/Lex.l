@@ -18,7 +18,7 @@
 %option noyywrap nounput noinput batch
 %option c++ interactive outfile="Lexer.cpp"
 
-number                    (([1-9][0-9]*)|0)\.?[0-9]*
+number                    (([1-9][0-9]*)|0)
 identifier                ([_a-zA-Z][_a-zA-Z0-9]*)
 string                    \"(\\.|[^\\"])*\"	
  
@@ -26,8 +26,24 @@ string                    \"(\\.|[^\\"])*\"
   ctx.loc.step();
 
 "import"                            { tk(IMPORT); }
+"mod"                               { tk(MODULE); }
+"interface"                         { tk(INTERFACE); }
+"<-"                                { tk(IN); }
+"->"                                { tk(OUT); }
+":"                                 { tk(COLON); }
 
-{number}                            { tkv(NUMBER, strtod(yytext, nullptr)); }
+"("                                 { tk(LPAREN); }
+")"                                 { tk(RPAREN); }
+"{"                                 { tk(LBRACE); }
+"}"                                 { tk(RBRACE); }
+","                                 { tk(COMMA); }
+";"                                 { tk(SEMICOLON); }
+
+"="                                 { tk(EQUAL); }
+"^"                                 { tk(XOR); }
+"&"                                 { tk(AND); }
+
+{number}                            { tkv(NUMBER, strtoll(yytext, nullptr, 10)); }
 {identifier}                        { tkv(IDENTIFIER, yytext); }
 {string}                            { tkv(STRING, yytext); }
  

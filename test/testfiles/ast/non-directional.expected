@@ -1,0 +1,13 @@
+InterfaceStmt: MyFloat
+  Ports: 
+    PortStmt: undirected uint mant
+    PortStmt: undirected uint exp
+    PortStmt: undirected bool sign
+InterfaceStmt: UnaryOpIO
+  Ports: 
+    PortStmt: input MyFloat in
+    PortStmt: output MyFloat out
+ModStmt: MyDuplicationUnit
+  Ports: 
+    PortStmt: undirected UnaryOpIO io
+  Body: 

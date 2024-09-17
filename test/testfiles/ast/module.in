@@ -1,0 +1,26 @@
+interface MyFloat {
+  sign : bool
+  exp : uint
+  mant : uint
+}
+
+mod ModuleWithFloat (
+  x -> MyFloat
+  y <- MyFloat
+) { }
+
+interface RvChannel {
+  data <- uint
+  valid <- bool
+  ready -> bool
+}
+
+interface Something {
+  AR <- RvChannel
+  AW <- RvChannel
+  R -> RvChannel
+  W <- RvChannel
+  B -> RvChannel
+}
+
+
